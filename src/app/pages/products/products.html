@@ -1,0 +1,37 @@
+<div class="container mx-auto px-6 py-8">
+  <h1 class="text-3xl font-bold mb-6">Produk Pilihan</h1>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <div
+      *ngFor="let product of products"
+      class="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-100"
+    >
+      <img
+        [src]="product.thumbnail"
+        [alt]="product.title"
+        class="w-full h-48 object-cover rounded-t-xl"
+      />
+
+      <div class="p-4 space-y-1">
+        <h2 class="text-base font-semibold line-clamp-2">
+          {{ product.title }}
+        </h2>
+        <p class="text-sm text-gray-500">{{ product.brand }}</p>
+
+        <div class="flex items-center space-x-2">
+          <span class="text-lg font-bold text-green-600">
+            Rp{{ product.price * 16000 | number : '1.0-0' }}
+          </span>
+          <span *ngIf="product.discountPercentage" class="text-xs text-red-500 font-medium">
+            -{{ product.discountPercentage }}%
+          </span>
+        </div>
+
+        <div class="flex items-center text-yellow-500 text-sm">
+          ★ {{ product.rating }}
+          <span class="text-gray-400 ml-1">| Stok: {{ product.stock }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
